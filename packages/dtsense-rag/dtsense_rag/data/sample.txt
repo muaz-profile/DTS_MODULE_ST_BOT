@@ -1,94 +1,60 @@
-Generative AI Academy
-Extra Module: Streamlit
-Introduction to Streamlit
-Building Frontend for AI/Data Applications
-Authors/Penulis:
-I Nyoman Prayana Trisna, M.Cs.
-Alvin Rindra Fazrie, M.Sc.
-Data App with Streamlit
-Pengenalan Streamlit
-Membuat kode ataupun program untuk model machine learning saja tidak cukup, karena
-orang biasa tidak akan bisa menggunakannya. Di sini, penting untuk menerapkan model sedemikian
-rupa sehingga siapa pun dapat menggunakannya dengan mudah. Selain menggambarkan model,
-penting juga untuk menggambarkan visual dengan menarik dari data yang diberikan. Ada opsi
-berbeda seperti Django dan Flask dengan Python untuk menerapkan model maupun untuk
-memvisualisasikan data. Saat menggunakan framework ini, kita juga perlu memiliki pengetahuan
-tentang membangun front end menggunakan HTML, CSS, dan JS.
-Streamlit adalah open-source framework di Python yang memungkinkan untuk menerapkan
-tidak hanya model machine learning tetapi juga aplikasi Python apa pun dalam waktu yang singkat. Ini
-juga memungkinkan untuk menggambarkan dan memvisualisasikan data dengan lebih interaktif.
-Proses pembuatannya yang sederhana menjadi keunggulan untuk Streamlit dalam membangun
-aplikasi visualisasi ataupun machine learning.
-Keunggulan Streamlit
-Dibandingkan dengan framework Python lainnya, dalam pengembangan aplikasi visualisasi
-ataupun machine learning, Streamlit memiliki keunggulan:
-● Sederhana
-Streamlit jauh lebih mudah dan sederhana digunakan oleh data scientist untuk membangun
-dashboard
-● Interaktif
-Visualisasi dalam Streamlit dapat diinterasikan dengan menarik. Menggunakan Plotly, visual
-yang dibangun menjadi lebih menarik
-● Mudah diintegrasikan
-Streamlit dapat diintegrasikan dengan berbagai library dan framework populer untuk data
-science seperti Pandas, Matplotlib, Plotly, dan Scikit-learn
-● Deployment yang cepat
-Setelah aplikasi dibuat, Streamlit juga menyediakan cara yang mudah untuk me-deploy
-aplikasi ke berbagai platform.
-Instalasi Streamlit
-Streamlit dapat di-install secara mudah melalui pip.
-Biasanya, dalam membuat suatu aplikasi dalam Streamlit, kita membutuhkan virtual
-environment terlebih dahulu. Python Virtual Environment atau sering disebut juga dengan Python
-virtualvenv adalah alat yang membantu programmer membuat dan mengelola environment terpisah
-untuk setiap proyek Python. Cara membuat virtual environment sederhana dalam Python ditujukkan
-pada gambar di bawah.
-1
-Cara menggunakan virtual environment yang sudah dibuat adalah seperti gambar di bawah.
-Perlu dicatat bahwa <nama_virtual_env> disesuaikan dengan nama virtual environment yang
-diberikan.
-Setelah me-run snippet di atas, barulah kita dapat me-install Streamlit serta library lainnya yang
-dibutuhkan.
-Untuk menjalankan aplikasi Streamlit, mula-mula buat kode aplikasi sederhana terlebih
-dahulu. Sebagai contoh, kita buat progam hello world sederhana seperti di bawah. Kode ini disimpan
-dengan nama hello.py, misalnya.
-Bila sudah, kita bisa menjalankan aplikasi sederhana ini dengan command seperti di bawah ini.
-Maka browser akan langsung terbuka dan menjalankan aplikasi yang telah dibuat dalam hello.py.
-Fitur dalam Streamlit
-Streamlit terdiri dari berbagai fitur. Walaupun fokus pembahasan ini adalah mengenai
-visualisasi, akan tetapi elemen dalam aplikasi Streamlit tidak hanya berupa grafik visual. Selain grafik
-visualisasi, teks dan widgets juga penting dalam aplikasi yang akan dibuat.
-Text Elements
-Text elements mengacu pada elemen dalam aplikasi yang berkaitan dengan teks. Selain grafik
-visualisasi, sebuah aplikasi juga membutuhkan teks. Adapun beberapa text element yang dapat
-digunakan dalam Streamlit adalah:
-2
-Elemen Deskripsi Penulisan dalam Streamlit
-Title Judul st.title(“Title”)
-Header Header st.header(“Header”)
-Subheader Subheader st.subheader(“Subheader”)
-Markdown Teks dengan format markdown st.markdown(“**Bold Text**”)
-Code Teks dengan format kode Python st.code(“text”, language=”Python”)
-Latex Teks dengan format Latex st.latex(“Latex”)
-Penggunaan text element dalam Streamlit dicontohkan dalam kode di bawah ini.
-Adapun hasil yang diperlihatkan oleh kode di atas adalah sebagai berikut.
-3
-Widgets
-Widget dapat diartikan sebagai elemen yang mengatur jalannya suatu fungsi ataupun
-jalannya suatu komponen yang berisikan perintah tertentu. Dalam Streamlit, widget digunakan untuk
-mempermudah pengguna aplikasi untuk menjalankan dan berinteraksi dengan visualisasi yang
-diinginkan.
-Dalam Streamlit, terdapat banyak widget yang dapat digunakan. Dalam modul ini, dijelaskan
-beberapa widget seperti:
-● Button
-● Toggle
-● Checkbox
-● Radio button
-● Text Input
-● Slider
-Button
-Button digunakan sebagai tombol untuk melakukan suatu interaksi. Ketika button diklik, maka
-widget ini akan mengirimkan nilai True ke dalam aplikasi. Nilai True ini tidak dapat dikembalikan ke
-False kecuali aplikasi di-restart.
-Kode di atas menggambarkan bentuk penggunaan widget button. Apabila dijalankan, maka dalam
-aplikasi akan memiliki tampilan seperti ini.
-4
-Toggle
+Cooling Systems in Aircraft: Ensuring Optimal Performance
+Aircraft cooling systems are vital for ensuring the safety, efficiency, and comfort of operations in one of the most demanding environments known to engineering. From managing the intense heat generated by high-performance engines to maintaining cabin comfort and avionics reliability, cooling systems are designed to address the unique thermal challenges of aviation. At high altitudes and high speeds, where temperatures can range from searing heat to freezing cold, these systems are critical to sustaining performance and preventing failures.
+
+Engine Cooling Systems
+Aircraft engines generate immense heat during operation, particularly in high-performance jets. Without effective cooling, the intense temperatures could lead to component failure, reduced efficiency, and even catastrophic damage. Cooling systems for aircraft engines are designed to manage this heat, and their specific designs depend on the type of engine: piston or jet.
+
+Piston Engine Cooling Systems
+For piston-engine aircraft, cooling is typically achieved through air or liquid systems. Air cooling relies on airflow to remove heat from the engine. The engine cylinders are equipped with cooling fins that increase surface area, allowing heat to dissipate more effectively. The flow of air over these fins is facilitated by the aircraft's movement or by engine-driven fans in stationary or low-speed situations.
+
+Liquid cooling, less common in smaller aircraft, involves circulating a coolant such as a water-glycol mixture through channels around the engine components. This coolant absorbs heat and transfers it to a radiator, where it is dissipated into the surrounding air. Liquid cooling offers precise temperature control and is often used in high-performance piston engines where thermal regulation is critical.
+
+Jet Engine Cooling Systems
+Jet engines, particularly those in commercial and military aircraft, operate under extreme conditions with internal temperatures often exceeding 2,000°C (3,632°F). Cooling these engines is essential not only to prevent damage but also to ensure efficiency.
+
+In modern jet engines, cooling is typically achieved using bypass air or bleed air. Bypass air flows around the engine core, cooling components like the turbine blades and combustor walls. Advanced designs often incorporate intricate cooling holes in turbine blades, allowing a fine layer of air to insulate the blades from the intense heat of combustion. This method, known as "film cooling," significantly extends the life of engine components.
+
+Bleed air, extracted from the engine's compressor, is often routed to cool specific areas or to support auxiliary cooling systems. Additionally, advanced materials like ceramic matrix composites and nickel-based superalloys are used in critical areas to withstand high temperatures and reduce the cooling burden.
+
+Cabin Cooling Systems
+Maintaining passenger comfort is another critical function of an aircraft's cooling systems. At cruising altitudes, external temperatures can plummet to -50°C (-58°F) or lower, yet the heat generated by passengers, onboard electronics, and lighting requires careful regulation.
+
+Environmental Control Systems (ECS)
+Aircraft cabins are cooled using sophisticated environmental control systems. These systems regulate temperature, pressure, and humidity to ensure a safe and comfortable environment for passengers and crew. The primary cooling method involves using air conditioning packs.
+
+Air conditioning packs typically draw bleed air from the engines, though in newer designs, electrically driven compressors provide a more efficient alternative. The bleed air, which is hot and pressurized, is cooled through a series of heat exchangers before being expanded to achieve the desired temperature. Once conditioned, this air is distributed throughout the cabin via a network of ducts.
+
+Humidity control is also a critical function. At high altitudes, the external air is extremely dry, and cabin systems must balance cooling with sufficient humidity to prevent discomfort or health issues for passengers. Innovations in environmental control technology aim to improve efficiency while reducing fuel consumption and emissions.
+
+Avionics Cooling Systems
+Modern aircraft rely on advanced avionics, including navigation, communication, and flight control systems. These systems generate significant heat during operation, particularly in larger, more complex aircraft. Effective cooling is essential to maintain the reliability and longevity of these critical components.
+
+Forced-Air Cooling
+One common method for cooling avionics is forced-air cooling. Fans or blowers circulate air through avionics bays, directing it over heat-generating components to dissipate heat. The heated air is then vented outside the aircraft or recirculated after cooling.
+
+Liquid Cooling
+For high-performance or tightly packed avionics systems, liquid cooling is often preferred due to its superior heat transfer capabilities. Liquid cooling systems circulate a coolant through channels in or around the equipment, transferring heat to a heat exchanger where it is dissipated into the air.
+
+Sensors continuously monitor temperatures to ensure all avionics components remain within safe operating limits. Advances in avionics cooling aim to reduce weight and complexity while enhancing efficiency.
+
+Fuel Cooling Systems
+An often-overlooked aspect of aircraft cooling is fuel temperature management. Aircraft fuel serves a dual purpose: as an energy source and as a heat sink for dissipating excess heat from other systems.
+
+Fuel is used to cool engine oil and hydraulic systems by circulating through heat exchangers. However, prolonged operation at high altitudes can cause the fuel itself to become too cold, leading to the risk of freezing. Modern aircraft are equipped with fuel heaters to prevent this issue, ensuring that the fuel remains within optimal temperature ranges.
+
+Challenges in Aircraft Cooling Systems
+Aircraft cooling systems face several unique challenges. The most significant is the extreme and variable environmental conditions. High altitudes expose the aircraft to freezing temperatures, while the engines and avionics generate intense heat. Additionally, the weight of cooling systems must be minimized to improve fuel efficiency and aircraft performance.
+
+Reliability is another critical concern. Cooling systems must function flawlessly in a wide range of operating conditions, as failures could compromise safety or lead to costly repairs. Engineers continuously innovate to meet these challenges, incorporating advanced materials, more efficient heat exchangers, and redundant systems to ensure reliability.
+
+Innovations and Future Trends
+Advancements in technology are driving significant improvements in aircraft cooling systems. Key areas of innovation include:
+
+Lightweight Materials: The development of lightweight alloys and composites reduces the weight of cooling components, enhancing fuel efficiency.
+Electric Cooling Systems: Electrically driven compressors and fans are increasingly replacing traditional bleed air systems, improving efficiency and reducing environmental impact.
+Smart Sensors and Controls: Modern cooling systems incorporate sensors and automated controls to optimize performance in real-time, ensuring efficient heat management under varying conditions.
+Hybrid-Electric Aircraft: As the industry moves toward hybrid and fully electric propulsion, cooling systems are being reimagined to manage the unique thermal challenges of electric motors and batteries.
+Conclusion
+Cooling systems are an indispensable aspect of aircraft design, ensuring the safety, efficiency, and comfort of every flight. They manage the intense heat generated by engines and avionics while maintaining a comfortable cabin environment for passengers and crew. As aviation technology continues to evolve, so do cooling systems, with innovations aimed at improving efficiency, reducing weight, and minimizing environmental impact.
+
+From the early days of simple air-cooled engines to the sophisticated, multi-functional systems of today, cooling technology remains a cornerstone of aircraft performance and safety. The ongoing development of lightweight materials, advanced electronics, and electric propulsion systems promises a new era of innovation, ensuring that cooling systems remain at the forefront of aviation engineering.
