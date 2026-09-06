@@ -27,7 +27,7 @@ REFERENCE TEXT:
 {context}"""),
         ("human", "{question}"),
     ]).partial(context=load_context())
-    model = ChatGroq(api_key=api_key, model=model_name, temperature=0)
+    model = ChatGroq(groq_api_key=api_key, model=model_name, temperature=0)
     return prompt | model | StrOutputParser()
 
 def answer_question(question: str, api_key: str, model_name: str = DEFAULT_MODEL) -> str:
