@@ -1,69 +1,31 @@
-import streamlit as st
-from langchain_groq import ChatGroq
-from langchain_core.runnables import RunnablePassthrough
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
+import os
 
-st.title("🚀 Simple Aircraft Cooling System Bot")
+import streamlit as st
+
+from aircraft_assistant import DEFAULT_MODEL, answer_question
+
+st.set_page_config(page_title="Aircraft Cooling Knowledge Assistant", page_icon="✈️")
+st.title("Aircraft Cooling Knowledge Assistant")
+st.caption("A document-grounded demonstration covering engine, cabin, avionics and fuel cooling concepts.")
 
 with st.sidebar:
-    groq_api_key = st.text_input("GROQ API Key", type="password")
-    "[Get GROQ API key](https://console.groq.com/keys)"
+    api_key = st.text_input("GROQ API key", value=os.getenv("GROQ_API_KEY", ""), type="password")
+    model_name = st.text_input("Groq model", value=os.getenv("GROQ_MODEL", DEFAULT_MODEL))
+    st.link_button("Create a Groq API key", "https://console.groq.com/keys")
 
+question = st.text_area("Question", value="How does an aircraft environmental control system cool cabin air?", height=120)
 
-def generate_response(input_text):
-    model = 'llama-3.2-11b-vision-preview'
-    groq_chat = ChatGroq(
-        groq_api_key=groq_api_key, 
-        model_name=model    
-    )
+if st.button("Generate grounded answer", type="primary"):
+    if not api_key:
+        st.warning("Enter a Groq API key in the sidebar.")
+    elif not question.strip():
+        st.warning("Enter a question.")
+    else:
+        try:
+            with st.spinner("Reading the reference and generating an answer..."):
+                st.markdown(answer_question(question, api_key, model_name))
+        except Exception as exc:
+            st.error(f"Unable to generate an answer: {exc}")
 
-    with open("packages/dtsense-rag/dtsense_rag/data/sample.txt") as f:
-        context = f.read()
-
-    # Define a function to format the retrieved documents
-    def format_docs(docs):
-        return "\n\n".join(doc.page_content for doc in docs)
-
-    # Define the prompt template for generating AI responses
-    PROMPT_TEMPLATE = """
-    Human: You are an AI assistant, and provides answers to questions by using fact based and statistical information when possible.
-    Use the following pieces of information to provide a concise answer to the question enclosed in <question> tags.
-    If you don't know the answer, just say that you don't know, don't try to make up an answer.
-    <context>
-    {context}
-    </context>
-
-    <question>
-    {question}
-    </question>
-
-    The response should be specific and use statistics or numbers when possible.
-    Please answer with the same language as the question.
-
-    Assistant:"""
-
-    PROMPT_TEMPLATE = PROMPT_TEMPLATE.replace("{context}", context)
-
-    # Create a PromptTemplate instance with the defined template and input variables
-    prompt = PromptTemplate(
-        template=PROMPT_TEMPLATE, input_variables=["question"]
-    )
-
-    # Define the RAG (Retrieval-Augmented Generation) chain for AI response generation
-    chain = (
-        # {"question": RunnablePassthrough()}
-        prompt
-        | groq_chat
-        | StrOutputParser()
-    )
-
-    st.info(chain.invoke({"question": input_text}))
-
-with st.form("my_form"):
-    text = st.text_area("Enter text:", "How to cool down aircraft temperature?")
-    submitted = st.form_submit_button("Submit")
-    if not groq_api_key:
-        st.info("Please add your GROQ API key to continue.")
-    elif submitted:
-        generate_response(text)
+with st.expander("Scope and limitations"):
+    st.write("Answers are grounded in one demonstration reference document. This is not approved aircraft maintenance, design or certification data.")
