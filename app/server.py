@@ -1,19 +1,33 @@
-from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
-from langserve import add_routes
+import os
 
-app = FastAPI()
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
 
-@app.get("/")
-async def redirect_root_to_docs():
-    return RedirectResponse("/docs")
+from aircraft_assistant import DEFAULT_MODEL, answer_question
 
-# Edit this to add the chain you want to add
-from dtsense_rag.chain import chain as dtsense_rag_chain
+app = FastAPI(title="Aircraft Cooling Knowledge Assistant API", version="1.0.0")
 
-add_routes(app, dtsense_rag_chain, path="/dtsense-rag")
+class QuestionRequest(BaseModel):
+    question: str = Field(min_length=1, max_length=2_000)
+    model: str = DEFAULT_MODEL
 
-if __name__ == "__main__":
-    import uvicorn
+class AnswerResponse(BaseModel):
+    answer: str
+    grounded_in: str = "aircraft cooling reference document"
 
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+@app.post("/answer", response_model=AnswerResponse)
+def answer(request: QuestionRequest):
+    api_key = os.getenv("GROQ_API_KEY", "")
+    if not api_key:
+        raise HTTPException(status_code=503, detail="GROQ_API_KEY is not configured.")
+    try:
+        result = answer_question(request.question, api_key, request.model)
+        return AnswerResponse(answer=result)
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=f"Model request failed: {exc}") from exc
