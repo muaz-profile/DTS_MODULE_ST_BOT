@@ -1,57 +1,66 @@
-# DTS_FastAPI dan LangServe
+# Aircraft Cooling Knowledge Assistant
 
-## Pengantar
+A document-grounded engineering knowledge assistant that turns a technical reference on aircraft cooling systems into concise, traceable answers. The project provides both an interactive Streamlit interface and a FastAPI endpoint.
 
-FastAPI adalah framework modern dan cepat untuk membangun API dengan Python 3.6+ berdasarkan tipe anotasi. Ini dirancang untuk memberikan performa tinggi dan kemudahan penggunaan. LangServe adalah library yang memungkinkan pengembang untuk mendistribusikan `LangChain` runnables dan chains sebagai REST API, terintegrasi dengan FastAPI.
+## Why this project matters
 
+Engineering information is useful only when people can retrieve and understand it consistently. This project demonstrates a small digital workflow that connects a controlled source document with a user-facing application while explicitly limiting answers to the available source.
 
-## 🚀 Fitur Utama
-- **FastAPI**:
-  - Mendukung pengembangan API yang cepat dan efisien.
-  - Validasi data otomatis menggunakan Pydantic.
-  - Dokumentasi API otomatis dengan Swagger UI.
+## Features
 
-- **LangServe**:
-  - Mendistribusikan runnables dan chains dari LangChain sebagai REST API.
-  - Endpoint efisien untuk pemanggilan model bahasa.
-  - Dukungan untuk streaming dan tracing.
+- answers questions about engine, cabin, avionics and fuel cooling concepts;
+- grounds every answer in the included reference document;
+- states when the available information is insufficient;
+- supports German, English and other question languages through the model;
+- exposes a Streamlit interface and a typed FastAPI endpoint;
+- keeps credentials outside the repository;
+- includes health checks, input validation and error handling.
 
----
+## Architecture
 
-## 🛠️ Instalasi
+```text
+Reference document -> Prompt template -> Groq-hosted language model -> Streamlit UI / FastAPI response
+```
 
-### Prasyarat
-Pastikan Anda telah menginstal:
-- Python 3.8 atau lebih tinggi
-- Pip atau Anaconda
+This is intentionally described as a **document-grounded assistant**, not a full retrieval-augmented generation system: the current demonstration uses one controlled source document rather than a vector search pipeline.
 
-1. **Kloning Repositori**
+## Installation
 
-   ```bash
-   git clone https://github.com/DTSense/DTS_FASTAPI_LANGSERVE.git
-   cd DTS_FASTAPI_LANGSERVE
-   ```
-2. Buat dan Aktifkan Virtual Environment
-    ```bash
-   python -m venv venv
-   source venv/bin/activate   # Pada Windows gunakan: venv\Scripts\activate    
-   ```
-3. Install Dependensi
-    ```bash
-   pip install -r requirements.txt    
-   ```
+```bash
+python -m venv .venv
+# Windows: .venv\Scripts\activate
+# macOS/Linux: source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
 
-4. Atau install FastAPI/LangServe jika tidak ada di requirements.txt
-    ```bash
-   pip install uvicorn fastapi langserve[all]  
-   ```
+Set `GROQ_API_KEY` in `.env` or enter it directly in the Streamlit sidebar.
 
-5. Jalankan FastAPI/LangServe di Terminal
-    ```bash
-   uvicorn app.server:app --host 0.0.0.0 --port 8000 
-   ```
-6. ADDITIONAL, Jalankan dengan STREAMLIT di Terminal
-    ```bash
-   streamlit run app.py 
-   ```
+### Streamlit
 
+```bash
+streamlit run app_st.py
+```
+
+### FastAPI
+
+```bash
+uvicorn app.server:app --reload
+```
+
+Open `http://localhost:8000/docs` for the interactive API documentation.
+
+### Docker
+
+```bash
+docker build -t aircraft-cooling-assistant .
+docker run --env-file .env -p 8000:8000 aircraft-cooling-assistant
+```
+
+## Limitations
+
+The included reference is a general educational overview, not controlled OEM data or approved maintenance and certification documentation. The application must not be used for operational aircraft decisions.
+
+## Acknowledgement
+
+Initially developed during a DTSense FastAPI/LangChain learning module and subsequently restructured, completed and documented by Muhammad Aziz.
